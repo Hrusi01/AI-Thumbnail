@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Thumbnail Generator</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Lemon&display=swap" rel="stylesheet">
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+
+}
+.nav-bar{
+    display: flex;
+    height:9vmin;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo{
+  height:8vmin;
+  margin-left: 1vmin;
+
+}
+.nav-logo h1{
+  font-size: 6vmin;
+  color:#fff;
+}
+#logo-img{
+  height:8vmin;
+  border:1px solid black;
+
+}
+
+
+.nav-title{
+  color:#fff;
+  font-size:7vmin;
+  -webkit-text-stroke: 0.5px black;
+  flex-grow: 1;
+  text-align: center;
+
+}
+
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.khali-div{
+  height:8vmin;
+  margin-right: 1vmin;
+  width:13vmin;
+
+}
+
+body{
+  min-height:100vh;
+  background: linear-gradient( rgb(87, 26, 144), rgb(10, 5, 16));
+
+}
+
+.video-to-thumbnail{
+    margin-top:3vmin;
+    margin-bottom:3vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: row;
+  }
+
+  .paused-vid{
+
+    width:31vw;
+    border:1vw solid white;
+    border-radius:1vw;
+
+  }
+  .paused-vid img{
+
+    width:30vw;
+
+  }
+  .thumb-img{
+
+    width:31vw;
+    border:1vw solid white;
+    border-radius:1vw;
+
+  }
+  .thumb-img img {
+
+    width:30vw;
+
+
+  }
+  .arrow-div{
+
+    font-size:10vw;
+    color:#Fff;
+    margin-inline:3vw;
+    font-weight: 200;
+  }
+
+  @media (max-width: 880px) {
+    .video-to-thumbnail {
+      flex-direction: column;
+       /* Change to column on smaller screens */
+       margin-block:2vh;
+    }
+    .paused-vid{
+      width:70vw;
+    }
+    .paused-vid img{
+      width:70vw;
+    }
+    .thumb-img{
+      width:70vw;
+    }
+    .thumb-img img{
+      width:70vw;
+    }
+    .nav-title{
+      font-size: 5vw;
+    }
+    .arrow-div{
+      transform: rotate(90deg);
+    }
+    .upload-container{
+      height:250px;
+      width:250px;
+      border-radius:70px;
+    }
+    .upload-section{
+      margin-bottom: 45px;
+      margin-left: 78px;
+
+    }
+    #uploadButton {
+      padding:5px;
+      font-size: 13px;
+
+    }
+  }
+
+
+
+
+  .upload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    margin: 0;
+  }
+
+.upload-container {
+  height:250px;
+  width:250px;
+  border-radius:70px;
+    border: 2px solid #000;
+    box-shadow: 0 0 0 0.8vw #fff;
+
+
+    font-family: Arial, sans-serif;
+    color: #555;
+    cursor: pointer;
+    flex-direction: column;
+    background-color: #C4D7F2;
+    transition: background-color 0.3s;
+    background-image: url("static/images/drag\ and\ drop\ bg.webp");
+    background-size: contain;
+    position: relative;
+  }
+
+  .upload-container.dragover {
+    background-color: var(--primary-color);
+    border-color: #1e88e5;
+  }
+
+  #videoPreview {
+    margin-top: 20px;
+    max-width: 100%;
+    max-height: 300px;
+  }
+
+  .upload-section {
+    text-align:center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 45px;
+    margin-left: 78px;
+  }
+
+#browse-files{
+
+        padding-block: 25px;
+        width:85px;
+        border:2px solid black;
+        z-index:4;
+        padding-inline:5px;
+
+
+        background-color: #fff;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        color:#fff;
+        transition: background-color 0.3s;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        transition: box-shadow 0.3s ease;
+        user-select: none;
+        bottom: 0;
+        position: absolute;
+        margin-left: 80px;
+       margin-bottom: 140px;
+}
+
+
+#upload-files{
+    position: absolute;
+    padding:5px 25px;
+        font-size: 13px;
+
+        background-color: #3498db;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        color:#fff;
+        transition: background-color 0.3s;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        transition: box-shadow 0.3s ease;
+        user-select: none;
+    bottom: 0;
+    margin-bottom: 45px;
+    margin-left: 78px;
+}
+.generated-img{
+  padding-top: 3vw;
+  display: flex;
+  width:100%;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.generated-img img{
+  width:50%;
+  align-self: center;
+  gap:1vw;
+
+}
+
+.generated-img h2{
+  font-size: 5vmin;
+  color:#fff;
+  -webkit-text-stroke: 0.8px #000;
+}
+</style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-logo anton-regular">
+            <img id="logo-img" src="static/images/logo2.png">
+        </div>
+        <div class="nav-title anton-regular">
+            <h3>AI Thumbnail Generator</h3>
+        </div>
+        <div class="khali-div">
+
+        </div>
+    </div>
+<div class="video-to-thumbnail">
+    <div class="paused-vid">
+        <img src="static/images/paused-vid.png" alt="">
+
+    </div>
+    <div class="arrow-div">
+        <i class="fa-solid fa-arrow-right"></i>
+    </div>
+    <div class="thumb-img">
+        <img src="static/images/image.png" alt="">
+
+
+    </div>
+</div>
+
+
+
+    <div class="upload-div">
+        <div class="upload-container" id="uploadContainer">
+            <form method="post" enctype="multipart/form-data">
+                <input id="browse-files" type="file" name="file">
+                <input id="upload-files" type="submit" value="Upload">
+            </form>
+
+
+
+
+        </div>
+    </div>
+    <div class="generated-img">
+      {% if image_urls %}
+        <h2>Generated Images:</h2>
+        {% for image_url in image_urls %}
+            <img src="{{ image_url }}" alt="Generated Image">
+        {% endfor %}
+      {% endif %}
+
+    </div>
+</body>
+</html>
